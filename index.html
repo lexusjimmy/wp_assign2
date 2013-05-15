@@ -37,21 +37,12 @@ a{
 }
 .displayText{
 	float:left;
-	display:inline-block;
-	margin-left:30px;
-	margin-right:30px;
-}
-.normalOption{
-	float:left;
-	display:inline-block;
-	margin-left:10px;
-	margin-right:10px;
 }
 </style>
 </head>
 
 <body>
-<div class="normalOption">
+<div>
 	<h3>基隆、台北、新北市</h3>
 		<p class="option1"></p>
 	<h3>桃園、新竹、苗栗</h3>
@@ -64,15 +55,14 @@ a{
 		<p class="option5"></p>
 	<h3>宜蘭、花蓮、台東</h3>
 		<p class="option6"></p>
-	<div>
+	</div>
+    <div>
     	<select id="select1">
         	
         </select>
         <select id="select2">
         </select>
     </div>
-    </div>
-   
     <span class="displayText">
     	<h4>Title</h4>
         <p id="title"></p>
@@ -85,7 +75,7 @@ a{
         <h4>Description</h4>
         <p id="descr"></p>
     </span>
-    
+    <article class="testBox">tt</article>
 	<script type="text/javascript">
 		$('article').append("test");
 		var data=new Array();
@@ -94,7 +84,7 @@ a{
 				var city=new Object();
 				data.push(city);
 			}
-			
+			$('article').append("initializing finished");
 		}
 		initialingData();
 		data[0].cityName="七堵";
@@ -245,7 +235,7 @@ a{
 				}
 				
 			}
-			
+			$('article').append("wordfeeding finished");
 			
 		}
 		
