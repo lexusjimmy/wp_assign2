@@ -108,9 +108,9 @@
 				
 				//create the div of the list and add all of the list into the right area.
 				while (temp["data"][n] != null){
-					GroupID[i] = temp["data"][n]["id"];//Save the id value of the group into an array.
+					GroupID[n] = temp["data"][n]["id"];//Save the id value of the group into an array.
 					
-					$("<div><h1>" + temp["data"][n]["name"] + "</h1><ul class='sortFB connectSort' id='"+ GroupID[i] +"'></ul></div>").appendTo("#GroupList");
+					$("<div><h1>" + temp["data"][n]["name"] + "</h1><ul class='sortFB connectSort' id='"+ GroupID[n] +"'></ul></div>").appendTo("#GroupList");
 				
 					n++;
 				}
