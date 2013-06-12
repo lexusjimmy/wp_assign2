@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<title>Weather</title>
+<style type="text/css">
+.option1{
+}
+.option2{
+}
+.option3{
+}
+.option4{
+}
+.option5{
+}
+.option6{
+}
+.testBox{
+}
+a{
+	width:40px;
+	margin:auto;
+	cursor:pointer;
+}
+#title{
+
+}
+#time{
+}
+#loca{
+}
+#temp{
+}
+#descrip{
+}
+.displayText{
+	float:left;
+	display:inline-block;
+	margin-left:30px;
+	margin-right:30px;
+}
+.normalOption{
+	float:left;
+	display:inline-block;
+	margin-left:10px;
+	margin-right:10px;
+}
+</style>
+</head>
+
+<body>
+<div class="normalOption">
+	<h3>基隆、台北、新北市</h3>
+		<p class="option1"></p>
+	<h3>桃園、新竹、苗栗</h3>
+		<p class="option2"></p>
+	<h3>台中、彰化、南投</h3>
+		<p class="option3"></p>
+	<h3>雲林、嘉義、台南</h3>
+		<p class="option4"></p>
+	<h3>高雄、屏東</h3>
+		<p class="option5"></p>
+	<h3>宜蘭、花蓮、台東</h3>
+		<p class="option6"></p>
+	<div>
+    	<select id="select1">
+        	
+        </select>
+        <select id="select2">
+        </select>
+    </div>
+    </div>
+   
+    <span class="displayText">
+    	<h4>Title</h4>
+        <p id="title"></p>
+        <h4>Time</h4>
+        <p id="time"></p>
+        <h4>Location</h4>
+        <p id="loca"></p>
+        <h4>Temperature</h4>
+        <p id="temp"></p>
+        <h4>Description</h4>
+        <p id="descr"></p>
+    </span>
+    
+	<script type="text/javascript">
+		$('article').append("test");
+		var data=new Array();
+		function initialingData(){
+			for(var i=0;i<45;i++){
+				var city=new Object();
+				data.push(city);
+			}
+			
+		}
+		initialingData();
+		data[0].cityName="七堵";
+		data[0].area="基隆";
+		data[0].urlNum=2306188;
+		data[1].cityName="內湖";
+		data[1].area="台北";
+		data[1].urlNum=2306179;
+		data[2].cityName="新店";
+		data[2].area="台北";
+		data[2].urlNum=2036186;
+		data[3].cityName="淡水";
+		data[3].area="新北市";
+		data[3].urlNum=2306211;
+		data[4].cityName="金山";
+		data[4].area="新北市";
+		data[4].urlNum=2306223;
+		data[5].cityName="萬里";
+		data[5].area="新北市";
+		data[5].urlNum=2306231;
+		data[6].cityName="雙溪";
+		data[6].area="新北市";
+		data[6].urlNum=2306251;
+		data[7].cityName="大園";
+		data[7].area="桃園";
+		data[7].urlNum=2306209;
+		data[8].cityName="中壢";
+		data[8].area="桃園";
+		data[8].urlNum=2306184;
+		data[9].cityName="觀音";
+		data[9].area="桃園";
+		data[9].urlNum=2306200;
+		data[10].cityName="龍潭";
+		data[10].area="桃園";
+		data[10].urlNum=2306202;
+		data[11].cityName="桃園國際機場";
+		data[11].area="桃園";
+		data[11].urlNum=2306254;
+		data[12].cityName="東區";
+		data[12].area="新竹";
+		data[12].urlNum=2306185;
+		data[13].cityName="三灣";
+		data[13].area="苗栗";
+		data[13].urlNum=2306229;
+		data[14].cityName="西屯";
+		data[14].area="台中";
+		data[14].urlNum=2306181;
+		data[15].cityName="石岡";
+		data[15].area="台中";
+		data[15].urlNum=2306207;
+		data[16].cityName="清水";
+		data[16].area="台中";
+		data[16].urlNum=2306194;
+		data[17].cityName="新社";
+		data[17].area="台中";
+		data[17].urlNum=2306218;
+		data[18].cityName="大甲";
+		data[18].area="台中";
+		data[18].urlNum=2306210;
+		data[19].cityName="彰化市";
+		data[19].area="彰化";
+		data[19].urlNum=2306183;
+		data[20].cityName="二林";
+		data[20].area="彰化";
+		data[20].urlNum=2306195;
+		data[21].cityName="鹿港";
+		data[21].area="彰化";
+		data[21].urlNum=2306201;
+		data[22].cityName="南投市";
+		data[22].area="南投";
+		data[22].urlNum=2306204;
+		data[23].cityName="斗南";
+		data[23].area="雲林";
+		data[23].urlNum=2306212;
+		data[24].cityName="虎尾";
+		data[24].area="雲林";
+		data[24].urlNum=2306206;
+		data[25].cityName="布袋";
+		data[25].area="嘉義";
+		data[25].urlNum=2306206;
+		data[26].cityName="安平";
+		data[26].area="台南";
+		data[26].urlNum=2306182;
+		data[27].cityName="佳里";
+		data[27].area="台南";
+		data[27].urlNum=2306193;
+		data[28].cityName="麻豆";
+		data[28].area="台南";
+		data[28].urlNum=2306203;
+		data[29].cityName="新化";
+		data[29].area="台南";
+		data[29].urlNum=2306217;
+		data[30].cityName="玉井";
+		data[30].area="台南";
+		data[30].urlNum=2306232;
+		data[31].cityName="左營";
+		data[31].area="高雄";
+		data[31].urlNum=2306180;
+		data[32].cityName="岡山";
+		data[32].area="高雄";
+		data[32].urlNum=2306199;
+		data[33].cityName="高雄國際機場";
+		data[33].area="高雄";
+		data[33].urlNum=2306255;
+		data[34].cityName="屏東市";
+		data[34].area="屏東";
+		data[34].urlNum=2306189;
+		data[35].cityName="東港";
+		data[35].area="屏東";
+		data[35].urlNum=2306213;
+		data[36].cityName="枋山";
+		data[36].area="屏東";
+		data[36].urlNum=2306224;
+		data[37].cityName="宜蘭市";
+		data[37].area="宜蘭";
+		data[37].urlNum=2306198;
+		data[38].cityName="蘇澳";
+		data[38].area="宜蘭";
+		data[38].urlNum=2306208;
+		data[39].cityName="南澳";
+		data[39].area="宜蘭";
+		data[39].urlNum=2306243;
+		data[40].cityName="花蓮市";
+		data[40].area="花蓮";
+		data[40].urlNum=2306187;
+		data[41].cityName="台東市";
+		data[41].area="台東";
+		data[41].urlNum=2306190;
+		data[42].cityName="關山";
+		data[42].area="台東";
+		data[42].urlNum=2306227;
+		
+		function feedingWords(){
+			for(var i=0;i<data.length;i++){
+				var txt=$('<a></a>').text(data[i].cityName);
+				if(data[i].area=="台北"||data[i].area=="新北市"||data[i].area=="基隆"){
+					$('.option1').append(txt," ","&nbsp;")
+				}else if(data[i].area=="桃園"||data[i].area=="新竹"||data[i].area=="苗栗"){
+					$('.option2').append(txt,"  ","&nbsp;");
+				}else if(data[i].area=="台中"||data[i].area=="彰化"||data[i].area=="南投"){
+					$('.option3').append(txt,"  ","&nbsp;");
+				}else if(data[i].area=="雲林"||data[i].area=="嘉義"||data[i].area=="台南"){
+					$('.option4').append(txt,"  ","&nbsp;");
+				}else if(data[i].area=="高雄"||data[i].area=="屏東"){
+					$('.option5').append(txt,"  ","&nbsp;");
+				}else if(data[i].area=="宜蘭"||data[i].area=="花蓮"||data[i].area=="台東"){
+					$('.option6').append(txt,"  ","&nbsp;");
+				}
+				
+			}
+			
+			
+		}
+		
+		 console.log(data[42].area)
+		 feedingWords();
+			 
+		 function feedSelection(){
+		 	var temp=data[0].area;
+			for(var i=0;i<data.length;i++){
+				if(temp!=data[i].area){
+					var newOpt=$('<option></option>').text(data[i].area);
+					$('#select1').append(newOpt);
+					temp=data[i].area;
+				}
+			}
+			console.log("test");
+		 }
+		 feedSelection();
+		 var instantChange=function(s){
+		 	for(var i=0;i<data.length;i++){
+				if(data[i].area==s){
+					var newOpt=$('<option></option>').text(data[i].cityName);
+					$('#select2').append(newOpt);
+				}
+			}
+		 }
+		 $('#select1').click(function(u) {
+            $('#select2').empty();
+			instantChange(u.target.value);
+			
+        });
+		 var changeInfo=function(t){
+		 	$.getJSON("http://query.yahooapis.com/v1/public/yql?format=json&q=select * from weather.forecast where woeid=" + t, {}, function (a, d) {
+            console.log("data", a);
+            console.log("status", d);
+            var ob = a.query.results.channel.item,
+                topic = ob.title,
+                place = ob.lat + "," + ob["long"],
+                time = ob.pubDate,
+                degree = (ob.condition.temp-32)*5/9,
+                b = ob.condition.text;
+            $("#title").text(topic);
+            $("#loca").text(place);
+            $("#temp").text(degree +"。C");
+            $("#descr").text(b);
+            $("#time").text(time);
+            
+        })
+		 }
+		 var findTarget=function(g){
+		 	for(var i=0;i<data.length;i++){
+				if(g==data[i].cityName){
+					
+					changeInfo(data[i].urlNum)
+					break;
+				}
+			}
+		 }
+		 $('a').click(function(e) {
+            findTarget(e.target.text);
+			
+        });
+		$('#select2').click(function(e) {
+            findTarget(e.target.value);
+        });
+	</script>
+
+</body>
+</html>
