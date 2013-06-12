@@ -143,29 +143,8 @@
 					a++;
 				}
 				
-				$(".sortFB").sortable({
-					connectWith:".connectSort",
-					tolerance: "pointer"
-				});//make those uls sortable
 				
-				$(".sortGroup").sortable({
-					connectWith:".dealGroup",
-					tolerance: "pointer",
-					receive: function(event, ui) {
-						var warning = window.confirm("Are you sure to remove this friend list, this will remove the real list in the facebook and cannot be recovered.");
-						if(warning){
-							var $item = $( this );
-							
-							$item.find("div").remove();
-							
-						}else{
-							var $item = $( this );
-							
-							$item.find("div").remove();
-							
-						}
-					}
-				});//make those uls sortable
+				
 				
 				getMembers(num+1);
 				
@@ -188,8 +167,7 @@
 			</div>
 			<div id="infoDiv">
 				<ul id="ControlList">
-					<li id="create" onclick="change(1);"><span>Create</span></li>
-					<li id="delete" class="sortGroup dealGroup"onclick="change(2);"><span>Delete</span></li>
+					
 				</ul>
 				<div id="friendsInfo">
 					<span>姓名：</span><span id="name"></span><br/>
