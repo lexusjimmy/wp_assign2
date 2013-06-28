@@ -44,22 +44,22 @@ function getSource(){
 			blockProperties.created=false;
 			switch(j%6){
 				case 0:
-					blockProperties.imgURL='pic/IMG_1977.jpg';
+					blockProperties.imgURL='pic/IMG_1977.JPG';
 				break;
 				case 1:
-					blockProperties.imgURL='pic/IMG_1978.jpg';
+					blockProperties.imgURL='pic/IMG_1978.JPG';
 				break;
 				case 2:
-					blockProperties.imgURL='pic/IMG_1989.jpg';
+					blockProperties.imgURL='pic/IMG_1989.JPG';
 				break;
 				case 3:
-					blockProperties.imgURL='pic/IMG_2081.jpg';
+					blockProperties.imgURL='pic/IMG_2081.JPG';
 				break;
 				case 4:
-					blockProperties.imgURL='pic/IMG_2089.jpg';
+					blockProperties.imgURL='pic/IMG_2089.JPG';
 				break;
 				case 5:
-					blockProperties.imgURL='pic/IMG_2097.jpg';
+					blockProperties.imgURL='pic/IMG_2097.JPG';
 				break;
 			}
 			genreCollection[i][j]=blockProperties;
