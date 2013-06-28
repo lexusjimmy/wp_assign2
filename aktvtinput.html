@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="https://www.parse.com/downloads/javascript/parse/latest/min.js"></script>
+  <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+  <meta charset=utf-8 />
+  <title>aktvtinput</title>
+  <style type="text/css">
+  header{
+	background:#54aeee;
+	margin-top:-5px;
+	margin-left:-5px;
+	margin-right:-5px;
+	position:relative;
+	z-index:150;
+	
+}
+header img{
+	height:50px;
+}
+body{
+	background: rgb(204,220,221); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(204,220,221,1) 0%, rgba(164,205,221,1) 77%, rgba(204,220,221,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(204,220,221,1)), color-stop(77%,rgba(164,205,221,1)), color-stop(100%,rgba(204,220,221,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(204,220,221,1) 0%,rgba(164,205,221,1) 77%,rgba(204,220,221,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(204,220,221,1) 0%,rgba(164,205,221,1) 77%,rgba(204,220,221,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(204,220,221,1) 0%,rgba(164,205,221,1) 77%,rgba(204,220,221,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(204,220,221,1) 0%,rgba(164,205,221,1) 77%,rgba(204,220,221,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccdcdd', endColorstr='#ccdcdd',GradientType=0 ); /* IE6-9 */
+}	  
+  </style>
+</head>
+<body>  
+  <header><a href="comebineMainUI.html"><img src="icon/logo.jpg"/></a></header>
+  <form class="form-horizontal" action="javascript:#">
+  <fieldset>
+
+  
+  <legend id="aktvtinputtext"></legend>
+ 
+  <div class="control-group">
+    <label class="control-label" for="aktvtname">name</label>
+    <div class="controls">                     
+     <input id="aktvtname" type="text" name="aktvtname" placeholder="name here plz">
+    </div>
+    <br>
+      <label class="control-label" for="aktvtdate">date</label>
+    <div class="controls">                     
+      <input id="aktvtdate" type="date" name="aktvtdate">
+    </div> 
+    <br>
+      <label class="control-label" for="aktvttime">time</label>
+    <div class="controls">                     
+      <input id="aktvttime" type="time" name="aktvttime">
+    </div>
+    <br>
+    <label class="control-label" for="aktvtlocation">location</label>
+    <div class="controls" id="aktvtlocation">
+      <select id="aktvtlocation1">
+ 
+      </select>
+      <select id="aktvtlocation2"></select>
+    </div>
+    <br>
+      <label class="control-label" for="aktvtdescription">description</label>
+  <div class="controls">                     
+    <textarea id="aktvtdescription" name="aktvtdescription" placeholder="more details..."></textarea>
+  </div>
+  <br>
+      <label class="control-label" for="aktvtpic">pic</label>
+  <div class="controls">                     
+    <input id="aktvtpic" type="text" name="aktvtpic" placeholder="url of pic"></textarea>
+  </div>
+  </div>
+
+
+<div class="control-group">
+  <div class="controls">
+    <button id="save" name="save" class="btn btn-primary">save</button>
+  </div>
+</div>
+
+    
+  </fieldset>
+
+    
+</form>
+  <script type="text/javascript">
+  Parse.initialize("IcQWj2BiC9Js5pxvkLpjCjEVqPjccx0msL2UBkqk", "3KTsniyxkCR7BZsvzZHGU0FKeshUf4edpDJeVM36");
+
+var Aktvt = Parse.Object.extend("Aktvts");
+
+
+var saveFunc = function(){
+
+  var aktvt = new Aktvt();
+  aktvt.set("aktvtname",$("#aktvtname").val());
+  aktvt.set("aktvtdate",$("#aktvtdate").val());
+  aktvt.set("aktvttime",$("#aktvttime").val());
+  aktvt.set("aktvtlocation1",$("#aktvtlocation1").val());
+  aktvt.set("aktvtlocation2",$("#aktvtlocation2").val());
+  aktvt.set("aktvtdescription",$("#aktvtdescription").val());
+  aktvt.set("aktvtpic",$("#aktvtpic").val());
+  aktvt.set("itsaaktvt","itsaaktvt");
+  aktvt.save(null, {
+    success: function(object) {
+        alert("saved!");
+		 location.href='comebineMainUI.html';
+    },
+    error: function(error) {
+        alert("unsaved");
+    }
+  });  
+};
+
+var location1=["山上","山下","附近","很遠"],
+    location2={"山上":["自九","自十"],"山下":["綜院","大智","大勇"],"附近":["動物園","juicy bun"],"很遠":["公企中心","台北車站"]};
+
+
+var Init=function(){
+var b=[],c;for(c in location1)b.push("<option>"+location1[c]+"</option>");
+$("#aktvtlocation1").append(b);
+$("#aktvtlocation1").trigger("change");
+$(".selectpicker").selectpicker();
+};
+
+$("#aktvtlocation1").change(function(){
+var a=$(this).find(":selected").text(),b,c=[];
+for(b in location2[a])c.push("<option>"+location2[a][b]+"</option>");
+$("#aktvtlocation2").children().remove();
+$("#aktvtlocation2").append(c);
+$(".selectpicker").selectpicker();
+});
+$("#aktvtlocation2").change(function(){
+var a=$(this).find(":selected").text();});
+
+
+
+
+
+
+$("#save").on ("click",saveFunc);
+window.onload=function(){Init();};
+
+  </script>  
+</body>  
+</html>

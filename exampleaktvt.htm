@@ -1,0 +1,336 @@
+<head>
+<meta charset="utf-8">
+<title>exampleaktvt</title>
+ <script src="https://www.parse.com/downloads/javascript/parse/latest/min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+<link href="./css/960.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+
+#aktvtpict{
+	position:relative;
+	left:300px;
+	top:-100px;
+	z-index:-1;
+}
+#aktvttemp{
+	position:relative;
+	left:450px;
+	top:100px;
+	z-index:1;
+	font-size:40px;
+}
+
+ header{
+	background:#54aeee;
+	margin-top:-5px;
+	margin-left:-5px;
+	margin-right:-5px;
+	position:relative;
+	z-index:150;
+	
+}
+header img{
+	height:50px;
+}
+body{
+	background: rgb(204,220,221); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(204,220,221,1) 0%, rgba(164,205,221,1) 77%, rgba(204,220,221,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(204,220,221,1)), color-stop(77%,rgba(164,205,221,1)), color-stop(100%,rgba(204,220,221,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(204,220,221,1) 0%,rgba(164,205,221,1) 77%,rgba(204,220,221,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(204,220,221,1) 0%,rgba(164,205,221,1) 77%,rgba(204,220,221,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(204,220,221,1) 0%,rgba(164,205,221,1) 77%,rgba(204,220,221,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(204,220,221,1) 0%,rgba(164,205,221,1) 77%,rgba(204,220,221,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccdcdd', endColorstr='#ccdcdd',GradientType=0 ); /* IE6-9 */
+}
+</style>
+</head>
+<body>
+ <header><a href="comebineMainUI.html"><img src="icon/logo.jpg"/></a></header>
+<input id="number" type="text" name="number" placeholder="aktvt no.">
+<button id="save" name="save">save</button>
+<div class="container_12">
+<div class="grid_4">
+<img id="aktvtpic" name="aktvtpic" src="./post.png">
+</div>
+<div class="grid_8">
+<div id="aktvt">
+<h3>Name</h3><div id="aktvtname"></div>
+<h3>Date</h3><div id="aktvtdate"></div>
+<h3>Time</h3><div id="aktvttime"></div>
+<h3>Location</h3><div id="aktvtlocation"></div>
+<h3>Description</h3><div id="aktvtdescription"></div>
+<h3>Forcast</h3><div id="aktvtforcast">
+
+<div id="aktvttext"></div>
+<div id="aktvttemp"></div>
+<div id="aktvtpict"><img id="wpict" name="wpic" src="http://db.tt/udd8bFMG"></div>
+</div>
+</div>
+
+ <script type="text/javascript">
+
+
+
+
+
+
+
+
+//var num=1;
+Parse.initialize("IcQWj2BiC9Js5pxvkLpjCjEVqPjccx0msL2UBkqk", "3KTsniyxkCR7BZsvzZHGU0FKeshUf4edpDJeVM36");
+var num=Number($("#number").text());
+
+
+var all=function(){
+var GameScore = Parse.Object.extend("Aktvts");
+var query = new Parse.Query(GameScore);
+query.equalTo("itsaaktvt", "itsaaktvt");
+query.find({
+  success: function(results) {
+  	//var num=0;
+	var object=results[num];
+	//alert(object.id + ' - ' + object.get('aktvtname'));
+	document.aktvtpic.src=object.get('aktvtpic');
+	var aktvtname=object.get('aktvtname');
+	$("#aktvtname").text(aktvtname);
+	var aktvttime =object.get('aktvttime');
+	$("#aktvttime").text(aktvttime);
+	var aktvtlocation =object.get('aktvtlocation1')+","+object.get('aktvtlocation2');
+	$("#aktvtlocation").text(aktvtlocation);
+	var aktvtdescription=object.get('aktvtdescription');
+	$("#aktvtdescription").text(aktvtdescription);
+	var aktvtdate=object.get('aktvtdate');
+	var aktvtyear1=aktvtdate[0];
+	var aktvtyear2=aktvtdate[1];
+	var aktvtyear3=aktvtdate[2];
+	var aktvtyear4=aktvtdate[3];
+	var aktvtmonth1=aktvtdate[5];
+	var aktvtmonth2=aktvtdate[6];
+	var aktvtday1=aktvtdate[8];
+	var aktvtday2=aktvtdate[9];
+
+
+	var adate0=aktvtday1;
+	var adate1=aktvtday2;
+	var adate2=" ";
+	if (aktvtmonth1==="0"){
+		if(aktvtmonth2==="1"){
+			var adate3="J";
+			var adate4="a";
+			var adate5="n";
+		}
+		else if(aktvtmonth2==="2"){
+			var adate3="F";
+			var adate4="e";
+			var adate4="b";
+		}
+		else if(aktvtmonth2==="3"){
+			var adate3="M";
+			var adate4="a";
+			var adate5="r";
+		}
+		else if(aktvtmonth2==="4"){
+			var adate3="A";
+			var adate4="p";
+			var adate5="r";
+		}
+		else if(aktvtmonth2==="5"){
+			var adate3="M";
+			var adate4="a";
+			var adate5="y";
+		}
+		else if(aktvtmonth2==="6"){
+			var adate3="J";
+			var adate4="u";
+			var adate5="n";
+		}
+		else if(aktvtmonth2==="7"){
+			var adate3="J";
+			var adate4="u";
+			var adate5="l";
+		}
+		else if(aktvtmonth2==="8"){
+			var adate3="A";
+			var adate4="u";
+			var adate5="g";
+		}
+		else{
+			var adate3="S";
+			var adate4="e";
+			var adate5="p";
+		};
+
+	}else{
+		if(aktvtmonth2==="0"){
+			var adate3="O";
+			var adate4="c";
+			var adate5="t";
+		}
+		else if(aktvtmonth2==="1"){
+			var adate3="N";
+			var adate4="o";
+			var adate5="v";
+		}
+		else{
+			var adate3="D";
+			var adate4="e";
+			var adate5="c";
+		};
+
+	};
+	var adate6=" ";
+	var adate7=aktvtyear1;
+	var adate8=aktvtyear2;
+	var adate9=aktvtyear3;
+	var adate10=aktvtyear4;
+
+	var adate=adate0+adate1+adate2+adate3+adate4+adate5+adate6+adate7+adate8+adate9+adate10;
+
+
+ var renew=function(a){
+ 	$.getJSON("http://query.yahooapis.com/v1/public/yql?format=json&q=select * from weather.forecast where woeid="+28751955,
+	function(a){
+
+		if (adate===a.query.results.channel.item.forecast[0].date){
+			$("#aktvt #aktvtdate").text(a.query.results.channel.item.forecast[0].date);
+			$("#aktvt #aktvttemp").text(Math.round(((a.query.results.channel.item.forecast[0].high)/2+(a.query.results.channel.item.forecast[0].low)/2-32)*5/9)+"℃");
+			var atext=String(a.query.results.channel.item.forecast[0].text);
+			if(atext==="Clear"||atext==="Sunny"||atext==="Mostly Clear"){
+				document.wpic.src="http://db.tt/PpGBPl5s";
+			}else if (atext==="PM Thunderstorms"||atext==="Thunderstorms"||atext==="Scattered Thunderstorms"){
+				document.wpic.src="http://db.tt/AtgYUlSs";
+			}else if (atext==="Partly Cloudy"||atext==="Cloudy"||atext==="Partly Cloudy/Wind"||atext==="Cloudy/Wind"){
+				document.wpic.src="http://db.tt/oDfLbiYm";
+			}else if (atext==="Mostly Sunny"){
+				document.wpic.src="http://db.tt/lNGlIDTR";
+			}else if (atext==="Mostly Cloudy"){
+				document.wpic.src="http://db.tt/KddsaqES";
+			}else if (atext==="Few Shower"){
+				document.wpic.src="http://db.tt/rJkEOtQI";
+			}else if (atext==="Just Rain"){
+				document.wpic.src="hhttp://db.tt/FXvxXQ6Y";
+			}else if (atext==="Cloudy with Dizzle"){
+				document.wpic.src="http://db.tt/nmjZB1Qz";
+			}else{
+			$("#aktvt #aktvttext").text(a.query.results.channel.item.forecast[0].text);
+			};
+		}else if(adate===a.query.results.channel.item.forecast[1].date){
+			$("#aktvt #aktvtdate").text(a.query.results.channel.item.forecast[1].date);
+			$("#aktvt #aktvttemp").text(Math.round(((a.query.results.channel.item.forecast[1].high)/2+(a.query.results.channel.item.forecast[1].low)/2-32)*5/9)+"℃");
+			var atext=String(a.query.results.channel.item.forecast[1].text);
+			if(atext==="Clear"||atext==="Sunny"||atext==="Mostly Clear"){
+				document.wpic.src="http://db.tt/PpGBPl5s";
+			}else if (atext==="PM Thunderstorms"||atext==="Thunderstorms"||atext==="Scattered Thunderstorms"){
+				document.wpic.src="http://db.tt/AtgYUlSs";
+			}else if (atext==="Partly Cloudy"||atext==="Cloudy"||atext==="Partly Cloudy/Wind"||atext==="Cloudy/Wind"){
+				document.wpic.src="http://db.tt/oDfLbiYm";
+			}else if (atext==="Mostly Sunny"){
+				document.wpic.src="http://db.tt/lNGlIDTR";
+			}else if (atext==="Mostly Cloudy"){
+				document.wpic.src="http://db.tt/KddsaqES";
+			}else if (atext==="Few Shower"){
+				document.wpic.src="http://db.tt/rJkEOtQI";
+			}else if (atext==="Just Rain"){
+				document.wpic.src="hhttp://db.tt/FXvxXQ6Y";
+			}else if (atext==="Cloudy with Dizzle"){
+				document.wpic.src="http://db.tt/nmjZB1Qz";
+			}else{
+			$("#aktvt #aktvttext").text(a.query.results.channel.item.forecast[1].text);
+			};		
+		}else if(adate===a.query.results.channel.item.forecast[2].date){
+			$("#aktvt #aktvtdate").text(a.query.results.channel.item.forecast[2].date);
+			$("#aktvt #aktvttemp").text(Math.round(((a.query.results.channel.item.forecast[2].high)/2+(a.query.results.channel.item.forecast[2].low)/2-32)*5/9)+"℃");
+			var atext=String(a.query.results.channel.item.forecast[2].text);
+			if(atext==="Clear"||atext==="Sunny"||atext==="Mostly Clear"){
+				document.wpic.src="http://db.tt/PpGBPl5s";
+			}else if (atext==="PM Thunderstorms"||atext==="Thunderstorms"||atext==="Scattered Thunderstorms"){
+				document.wpic.src="http://db.tt/AtgYUlSs";
+			}else if (atext==="Partly Cloudy"||atext==="Cloudy"||atext==="Partly Cloudy/Wind"||atext==="Cloudy/Wind"){
+				document.wpic.src="http://db.tt/oDfLbiYm";
+			}else if (atext==="Mostly Sunny"){
+				document.wpic.src="http://db.tt/lNGlIDTR";
+			}else if (atext==="Mostly Cloudy"){
+				document.wpic.src="http://db.tt/KddsaqES";
+			}else if (atext==="Few Shower"){
+				document.wpic.src="http://db.tt/rJkEOtQI";
+			}else if (atext==="Just Rain"){
+				document.wpic.src="hhttp://db.tt/FXvxXQ6Y";
+			}else if (atext==="Cloudy with Dizzle"){
+				document.wpic.src="http://db.tt/nmjZB1Qz";
+			}else{
+			$("#aktvt #aktvttext").text(a.query.results.channel.item.forecast[2].text);
+			};
+		}else if(adate===a.query.results.channel.item.forecast[3].date){
+			$("#aktvt #aktvtdate").text(a.query.results.channel.item.forecast[3].date);
+			$("#aktvt #aktvttemp").text(Math.round(((a.query.results.channel.item.forecast[3].high)/2+(a.query.results.channel.item.forecast[3].low)/2-32)*5/9)+"℃");
+			var atext=String(a.query.results.channel.item.forecast[3].text);
+			if(atext==="Clear"||atext==="Sunny"||atext==="Mostly Clear"){
+				document.wpic.src="http://db.tt/PpGBPl5s";
+			}else if (atext==="PM Thunderstorms"||atext==="Thunderstorms"||atext==="Scattered Thunderstorms"){
+				document.wpic.src="http://db.tt/AtgYUlSs";
+			}else if (atext==="Partly Cloudy"||atext==="Cloudy"||atext==="Partly Cloudy/Wind"||atext==="Cloudy/Wind"){
+				document.wpic.src="http://db.tt/oDfLbiYm";
+			}else if (atext==="Mostly Sunny"){
+				document.wpic.src="http://db.tt/lNGlIDTR";
+			}else if (atext==="Mostly Cloudy"){
+				document.wpic.src="http://db.tt/KddsaqES";
+			}else if (atext==="Few Shower"){
+				document.wpic.src="http://db.tt/rJkEOtQI";
+			}else if (atext==="Just Rain"){
+				document.wpic.src="hhttp://db.tt/FXvxXQ6Y";
+			}else if (atext==="Cloudy with Dizzle"){
+				document.wpic.src="http://db.tt/nmjZB1Qz";
+			}else{
+			$("#aktvt #aktvttext").text(a.query.results.channel.item.forecast[3].text);
+			};
+		}else if(adate===a.query.results.channel.item.forecast[4].date){
+			$("#aktvt #aktvtdate").text(a.query.results.channel.item.forecast[4].date);
+			$("#aktvt #aktvttemp").text(Math.round(((a.query.results.channel.item.forecast[4].high)/2+(a.query.results.channel.item.forecast[4].low)/2-32)*5/9)+"℃");
+			var atext=String(a.query.results.channel.item.forecast[4].text);
+			if(atext==="Clear"||atext==="Sunny"||atext==="Mostly Clear"){
+				document.wpic.src="http://db.tt/PpGBPl5s";
+			}else if (atext==="PM Thunderstorms"||atext==="Thunderstorms"||atext==="Scattered Thunderstorms"){
+				document.wpic.src="http://db.tt/AtgYUlSs";
+			}else if (atext==="Partly Cloudy"||atext==="Cloudy"||atext==="Partly Cloudy/Wind"||atext==="Cloudy/Wind"){
+				document.wpic.src="http://db.tt/oDfLbiYm";
+			}else if (atext==="Mostly Sunny"){
+				document.wpic.src="http://db.tt/lNGlIDTR";
+			}else if (atext==="Mostly Cloudy"){
+				document.wpic.src="http://db.tt/KddsaqES";
+			}else if (atext==="Few Shower"){
+				document.wpic.src="http://db.tt/rJkEOtQI";
+			}else if (atext==="Just Rain"){
+				document.wpic.src="hhttp://db.tt/FXvxXQ6Y";
+			}else if (atext==="Cloudy with Dizzle"){
+				document.wpic.src="http://db.tt/nmjZB1Qz";
+			}else{
+			$("#aktvt #aktvttext").text(a.query.results.channel.item.forecast[4].text);
+			};
+		}else{
+		$("#aktvt #aktvtdate").text(adate);
+		$("#aktvt #aktvtforcast").text("No Information Yet");
+		};
+
+	}
+)
+};
+renew();
+  },
+  error: function(error) {
+    alert("Error: " + error.code + " " + error.message);
+  }
+});
+}
+all();
+
+var saveFunc=function(){
+ num=Number($("#number").val());
+ all();
+ };
+ $("#save").on ("click",saveFunc);
+ </script> 
+</div>
+</div>
+</body>
+</html>
